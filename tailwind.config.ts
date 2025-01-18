@@ -9,9 +9,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        textGray: "#71767b",
+        textGrayLight: "#e7e9ea",
+        broderGray: "#2f3336",
+        inputGray: "#202327",
+        iconBlue: "#1d9bf0",
+        iconGreen: "#00ba7a",
+        iconPink:"#f91880",
       },
+      screens: {
+        xsm: "500px",
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        xxl: '1536px',
+      }
     },
   },
   plugins: [],
