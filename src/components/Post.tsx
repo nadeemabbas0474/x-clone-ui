@@ -2,8 +2,30 @@ import React from "react";
 import Image from "./Image";
 import PostInfo from "./PostInfo";
 import PostInteractions from "./PostInteractions";
+import { imagekit } from "@/utils";
 
-export default function Post() {
+interface FileDetailsResponse {
+  width: number;
+  height: number;
+  filePath: string;
+  url: string;
+  fileType: string;
+  customMetadata?: {sensitive: boolean};
+}
+ const Post = async () => {
+  // FETCH POST MEDIA
+  const getFileDetails = async (fileId: string): Promise<FileDetailsResponse>=> {
+    return new Promise((resolve, reject) => {
+      imagekit.getFileDetails(fileId, function (error, result) {
+        if (error) reject(error);
+        else resolve(result as FileDetailsResponse);
+      });
+    });
+  };
+
+  const fileDetails = await getFileDetails("678d3b21432c476416db1929");
+
+  console.log(fileDetails);
   return (
     <div className="p-4 border-y-[1px] border-broderGray">
       {/* POST TYPE*/}
@@ -50,10 +72,15 @@ export default function Post() {
             quas magni beatae aliquid, dignissimos sit. Facilis unde provident
             sint possimus?
           </p>
-          <Image path="/general/post.jpeg" w={600} h={600} alt="lama dev" />
+          {/* <Image path="/general/post.jpeg" w={600} h={600} alt="lama dev" /> */}
+          {fileDetails && (
+            <Image path={fileDetails.filePath} w={fileDetails.width} h={fileDetails.height} alt="lama dev" className={fileDetails.customMetadata?.sensitive ? "blur-md" : ""}/>
+          )}
           <PostInteractions />
         </div>
       </div>
     </div>
   );
 }
+
+export default Post;

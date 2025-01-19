@@ -10,9 +10,9 @@ export default function HomePage() {
           For you
         </Link>
         <Link href="/" className="pb-3 flex items-center">Following</Link>
-        <Link href="/" className="pb-3 flex items-center">React.js</Link>
-        <Link href="/" className="pb-3 flex items-center">JavaScript</Link>
-        <Link href="/" className="pb-3 flex items-center">CSS</Link>
+        <Link href="/" className="hidden pb-3 md:flex items-center">React.js</Link>
+        <Link href="/" className="hidden pb-3 md:flex items-center">JavaScript</Link>
+        <Link href="/" className="hidden pb-3 md:flex items-center">CSS</Link>
       </div>
       <Share/>
       <Feed/>
