@@ -3,6 +3,7 @@ import Image from "./Image";
 import PostInfo from "./PostInfo";
 import PostInteractions from "./PostInteractions";
 import { imagekit } from "@/utils";
+import Video from "./Video";
 
 interface FileDetailsResponse {
   width: number;
@@ -23,7 +24,7 @@ interface FileDetailsResponse {
     });
   };
 
-  const fileDetails = await getFileDetails("678d3b21432c476416db1929");
+  const fileDetails = await getFileDetails("678e110f432c476416f6a450");
 
   console.log(fileDetails);
   return (
@@ -73,9 +74,11 @@ interface FileDetailsResponse {
             sint possimus?
           </p>
           {/* <Image path="/general/post.jpeg" w={600} h={600} alt="lama dev" /> */}
-          {fileDetails && (
-            <Image path={fileDetails.filePath} w={fileDetails.width} h={fileDetails.height} alt="lama dev" className={fileDetails.customMetadata?.sensitive ? "blur-md" : ""}/>
-          )}
+          {fileDetails && fileDetails.fileType === "image" ? (
+            <Image path={fileDetails.filePath} w={fileDetails.width} h={fileDetails.height} alt="lama dev" 
+            className={fileDetails.customMetadata?.sensitive ? "blur-md" : ""}
+            />
+          ): <Video path={fileDetails.filePath} className={fileDetails.customMetadata?.sensitive ? "blur-md" : ""}/>}
           <PostInteractions />
         </div>
       </div>

@@ -16,7 +16,8 @@ const Image = ({path, h, w, alt, tr, className}: ImageTypes) => {
 
     return (
     <div><IKImage urlEndpoint={urlEndpoint} 
-   {...(tr ? {transformation: [{ width: `${w}`, height: `${h}` }]} : {width: w, height: h})} path={path} width={w} height={h} alt={alt} className={className}/></div>
+   {...(tr ? {transformation: [{ width: `${w}`, height: `${h}` }]} : {width: w, height: h})} path={path} width={w} height={h} 
+   lqip={{active: true, quality:20}} alt={alt} className={className}/></div>
   )
 }
 

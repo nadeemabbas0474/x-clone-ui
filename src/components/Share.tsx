@@ -44,7 +44,7 @@ export default function Share() {
           placeholder="What is happening"
           className="bg-transparent outline-none placeholder:text-textGray"
         />
-        {previewImg && (
+        {media?.type.includes("image") && previewImg && (
           <div className="rounded-xl overflow-hidden relative">
             <NextImage
               src={previewImg}
@@ -65,8 +65,23 @@ export default function Share() {
             >
               Edit
             </div>
+            <div className="absolute top-2 right-2 bg-black bg-opacity-50 font-bold text-sm w-8 h-8 text-white flex items-center justify-center rounded-full cursor-pointer" onClick={() => setMedia(null)}>X</div>
           </div>
         )}
+        {
+          media?.type.includes("video") && previewImg && (
+            <div className="relative">
+              <video
+                src={previewImg}
+                controls
+                // width={600}
+                // height={600}
+                // className="w-full h-full object-cover"
+              />
+              <div className="absolute top-2 right-2 bg-black bg-opacity-50 font-bold text-sm w-8 h-8 text-white flex items-center justify-center rounded-full cursor-pointer" onClick={() => setMedia(null)}>X</div>
+            </div>
+          )
+        }
         {isEditorOpen && previewImg && (
           <ImageEditor
             onClose={() => setIsEditorOpen(false)}
